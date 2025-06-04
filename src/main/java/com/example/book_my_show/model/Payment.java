@@ -1,8 +1,10 @@
 package com.example.book_my_show.model;
 
+import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +14,11 @@ import lombok.Setter;
 public class Payment extends BaseModel {
     
     private String refNo; // ThirdParty refNo.
+    private Double amount;
+    private Date paymentTime;
+    
+    @OneToOne
+    private Booking booking;
     
     @Enumerated(EnumType.ORDINAL)
     private PaymentStatus paymentStatus;

@@ -13,7 +13,6 @@ public interface BookingRepo extends JpaRepository<Booking, Long> {
     List<Booking> findByUserCreatedById(Long userId);
     
     List<Booking> findByBookingStatus(BookingStatus status);
-    
-    @Query("SELECT b FROM Booking b WHERE b.show.id = :showId")
+      @Query("SELECT b FROM Booking b WHERE b.show.id = :showId")
     List<Booking> findByShowId(@Param("showId") Long showId);
 }

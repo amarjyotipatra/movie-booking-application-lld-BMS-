@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
+import jakarta.validation.Valid;
 
 import com.example.book_my_show.dto.request.CityRequestDTO;
 import com.example.book_my_show.dto.response.CityResponseDTO;
@@ -27,15 +28,13 @@ public class CityController {
         CityResponseDTO city = cityService.getCityById(cityId);
         return ResponseEntity.ok(city);
     }
-    
-    @GetMapping("/cities/search")
+      @GetMapping("/cities/search")
     public ResponseEntity<List<CityResponseDTO>> searchCities(@RequestParam String name) {
         List<CityResponseDTO> cities = cityService.searchCitiesByName(name);
         return ResponseEntity.ok(cities);
     }
-    
-    @PostMapping("/cities")
-    public ResponseEntity<CityResponseDTO> createCity(@RequestBody CityRequestDTO cityRequestDTO) {
+      @PostMapping("/cities")
+    public ResponseEntity<CityResponseDTO> createCity(@Valid @RequestBody CityRequestDTO cityRequestDTO) {
         CityResponseDTO city = cityService.createCity(cityRequestDTO);
         return ResponseEntity.ok(city);
     }

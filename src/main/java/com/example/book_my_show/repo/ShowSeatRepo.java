@@ -10,8 +10,7 @@ import com.example.book_my_show.model.ShowSeat;
 import com.example.book_my_show.model.ShowSeatStatus;
 
 public interface ShowSeatRepo extends JpaRepository<ShowSeat, Long> {
-    
-    @Query("SELECT ss FROM ShowSeat ss WHERE ss.show.id = :showId AND ss.seat.id = :seatId")
+      @Query("SELECT ss FROM ShowSeat ss WHERE ss.show.id = :showId AND ss.seat.id = :seatId")
     Optional<ShowSeat> findByShowIdAndSeatId(@Param("showId") Long showId, @Param("seatId") Long seatId);
     
     List<ShowSeat> findByShowId(Long showId);

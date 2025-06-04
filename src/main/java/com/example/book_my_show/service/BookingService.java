@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,13 +68,12 @@ public class BookingService {
                 .sum();
         
         // Create booking
-        Booking booking = new Booking();
-        booking.setUserCreatedBy(user);
+        Booking booking = new Booking();        booking.setUserCreatedBy(user);
         booking.setShow(show);
         booking.setShowSeats(showSeats);
         booking.setTotalAmount(totalAmount);
         booking.setBookingStatus(BookingStatus.CONFIRMED);
-        booking.setBookingCreatedAt(LocalDateTime.now());
+        booking.setBookingCreatedAt(new Date());
         
         booking = bookingRepo.save(booking);
         

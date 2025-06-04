@@ -2,6 +2,7 @@ package com.example.book_my_show.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import java.util.List;
 
 import com.example.book_my_show.dto.request.BookingRequestDTO;
@@ -19,10 +20,8 @@ public class BookingController {
     public ResponseEntity<List<BookingResponseDTO>> getAllBookings() {
         List<BookingResponseDTO> bookings = bookingService.getAllBookings();
         return ResponseEntity.ok(bookings);
-    }
-
-    @PostMapping("/bookings")
-    public ResponseEntity<BookingResponseDTO> createBooking(@RequestBody BookingRequestDTO bookingRequestDTO) {
+    }    @PostMapping("/bookings")
+    public ResponseEntity<BookingResponseDTO> createBooking(@Valid @RequestBody BookingRequestDTO bookingRequestDTO) {
         BookingResponseDTO booking = bookingService.createBooking(bookingRequestDTO);
         return ResponseEntity.ok(booking);
     }
