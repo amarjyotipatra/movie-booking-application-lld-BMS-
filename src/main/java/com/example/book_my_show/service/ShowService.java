@@ -52,8 +52,7 @@ public class ShowService {
                 .orElseThrow(() -> new RuntimeException("Movie not found"));
         Screen screen = screenRepo.findById(request.getScreenId())
                 .orElseThrow(() -> new RuntimeException("Screen not found"));
-        
-        Show show = new Show();
+          Show show = new Show();
         show.setMovie(movie);
         show.setScreen(screen);
         show.setStartTime(request.getStartTime());

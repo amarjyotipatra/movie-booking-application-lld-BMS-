@@ -12,10 +12,10 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Payment extends BaseModel {
-    
-    private String refNo; // ThirdParty refNo.
+      private String refNo; // ThirdParty refNo.
     private Double amount;
     private Date paymentTime;
+    private String paymentMethod; // CREDIT_CARD, DEBIT_CARD, UPI, NET_BANKING
     
     @OneToOne
     private Booking booking;

@@ -58,13 +58,13 @@ public class PaymentService {
         if (!request.getAmount().equals(booking.getTotalAmount())) {
             throw new RuntimeException("Payment amount doesn't match booking amount");
         }
-        
-        // Create payment
+          // Create payment
         Payment payment = new Payment();
         payment.setRefNo(generatePaymentRefNo());
         payment.setAmount(request.getAmount());
         payment.setPaymentStatus(PaymentStatus.SUCCESS); // Simplified - in real app, integrate with payment gateway
         payment.setPaymentTime(new Date());
+        payment.setPaymentMethod(request.getPaymentMethod());
         payment.setBooking(booking);
         
         payment = paymentRepo.save(payment);
@@ -99,9 +99,7 @@ public class PaymentService {
     
     private String generatePaymentRefNo() {
         return "PAY_" + UUID.randomUUID().toString().replace("-", "").substring(0, 10).toUpperCase();
-    }
-    
-    private PaymentResponseDTO convertToResponseDTO(Payment payment) {
+    }    private PaymentResponseDTO convertToResponseDTO(Payment payment) {
         PaymentResponseDTO dto = new PaymentResponseDTO();
         dto.setId(payment.getId());
         dto.setRefNo(payment.getRefNo());
@@ -109,6 +107,7 @@ public class PaymentService {
         dto.setStatus(payment.getPaymentStatus());
         dto.setPaymentTime(payment.getPaymentTime());
         dto.setBookingId(payment.getBooking().getId());
+        dto.setPaymentMethod(payment.getPaymentMethod() != null ? payment.getPaymentMethod() : "ONLINE");
         return dto;
     }
 }

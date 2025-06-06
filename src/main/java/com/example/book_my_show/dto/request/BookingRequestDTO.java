@@ -2,7 +2,6 @@ package com.example.book_my_show.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class BookingRequestDTO {
-    @Nonnull(message = "User ID cannot be null")
+    @NotNull(message = "User ID cannot be null")
     private Long userId;
     
     @NotNull(message = "Show ID cannot be null")
